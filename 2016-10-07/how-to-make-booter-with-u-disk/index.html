@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives | Samir的博客</title>
+  <title>mac下使用dd命令制作u盘启动盘 | Samir的博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -185,113 +185,58 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2><h1><B>分享生活中的点点滴滴</B></h1></p></h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>每一个不曾起舞的日子都是对生命的辜负</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016-10-07/how-to-make-booter-with-u-disk/">mac下使用dd命令制作u盘启动盘</a></h4>
-                            
-                            <p><time datetime="2016-10-07T08:21:20.000Z"><a href="/2016-10-07/how-to-make-booter-with-u-disk/">2016-10-07</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016-10-07/how-to-read-ntfs-on-mac/">如何不借助外部软件，在mac上读写NTFS格式的硬盘</a></h4>
-                            
-                            <p><time datetime="2016-10-07T07:49:02.000Z"><a href="/2016-10-07/how-to-read-ntfs-on-mac/">2016-10-07</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016-09-17/how-to-install-duoshuo/">为博客配置多说</a></h4>
-                            
-                            <p><time datetime="2016-09-17T06:30:25.000Z"><a href="/2016-09-17/how-to-install-duoshuo/">2016-09-17</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016-09-17/hello-world/">我的博客正式开通了~</a></h4>
-                            
-                            <p><time datetime="2016-09-17T05:42:07.000Z"><a href="/2016-09-17/hello-world/">2016-09-17</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-10-07T08:21:20.000Z" itemprop="datePublished">
+          2016-10-07
+      </time>
+    
+</span>
+                <h1>mac下使用dd命令制作u盘启动盘</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>我们自己装系统的时候， 很多时候需要制作u盘启动盘，大都需要第三方工具来制作，今天我们介绍下用linux命令dd来制作u盘启动盘(mac环境)</p>
+<h2 id="1-查看U盘"><a href="#1-查看U盘" class="headerlink" title="1. 查看U盘"></a>1. 查看U盘</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[samir@Macbook ~]$ diskutil list</div><div class="line">  ......</div><div class="line">  ......</div><div class="line">/dev/disk2 (external, physical):</div><div class="line">	   #:                       TYPE NAME                    SIZE       IDENTIFIER</div><div class="line">	   0:                            NO NAME                *15.7 GB    disk2</div></pre></td></tr></table></figure>
+<p>可以看到u盘的node在/dev/disk2</p>
+<h2 id="2-umount该u盘"><a href="#2-umount该u盘" class="headerlink" title="2. umount该u盘"></a>2. umount该u盘</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">diskutil unmountDisk /dev/disk2</div></pre></td></tr></table></figure>
+<p>注意：是umount, 而不是推出</p>
+<h2 id="3-写入镜像"><a href="#3-写入镜像" class="headerlink" title="3. 写入镜像"></a>3. 写入镜像</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo dd if=&lt;你的镜像文件&gt; of=/dev/rdisk2 bs=1m; sync</div></pre></td></tr></table></figure>
+<p>注意：可以将/dev/disk2改为/dev/rdisk2， 写入速度将会提高很多， 关于这么写的原理， 请见：<a href="http://www.arefly.com/go/http://daoyuan.li/solution-dd-too-slow-on-mac-os-x/" target="_blank" rel="external">http://www.arefly.com/go/http://daoyuan.li/solution-dd-too-slow-on-mac-os-x/</a></p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p></p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016-10-07/how-to-read-ntfs-on-mac/">
+        如何不借助外部软件，在mac上读写NTFS格式的硬盘 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016-10-07/how-to-make-booter-with-u-disk/" data-title="mac下使用dd命令制作u盘启动盘" data-url="http://yoursite.com/2016-10-07/how-to-make-booter-with-u-disk/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"wenma"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
 
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="archives/index.html" data-title="undefined"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"wenma"};
-	(function() {
-	 		var ds = document.createElement('script');
-					ds.type = 'text/javascript';ds.async = true;
-							ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-									ds.charset = 'UTF-8';
-											(document.getElementsByTagName('head')[0] 
-											 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-												})();
-	</script>
-	<!-- 多说公共JS代码 end -->
 
       
 <!-- ============================ Footer =========================== -->
